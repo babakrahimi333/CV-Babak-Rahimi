@@ -1,0 +1,268 @@
+\documentclass[10pt,a4paper,ragged2e]{altacv}
+
+% First page: main column on the left and sidebar on the right.
+\geometry{
+  left=1.8cm,
+  right=9.5cm,
+  marginparwidth=6.7cm,
+  marginparsep=0.8cm,
+  top=1.7cm,
+  bottom=1.7cm
+}
+
+\ifxetexorluatex
+  % Use the default font supplied by the TeX distribution.
+\else
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage[default]{lato}
+\fi
+  \usepackage{hyperref}
+
+\definecolor{VividPurple}{HTML}{000000}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{2E2E2E}
+\colorlet{heading}{VividPurple}
+\colorlet{accent}{VividPurple}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+% Slightly smaller section headings fit the narrow first-page main column.
+\renewcommand{\cvsection}[2][]{%
+  \bigskip
+  \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
+  {\color{heading}\Large\bfseries\MakeUppercase{#2}}\\[-1ex]%
+  {\color{heading}\rule{\linewidth}{2pt}\par}\medskip
+}
+
+
+\renewcommand{\itemmarker}{{\small\textbullet}}
+\renewcommand{\ratingmarker}{\faCircle}
+
+\newcommand{\cveventgpa}[5]{%
+  {\large\color{emphasis}#1\par}
+  \smallskip\normalsize
+  \textbf{\color{accent}#2}\par
+  \smallskip
+  \noindent
+  \makebox[0.48\linewidth][l]{{\small\faCalendar~#3}}%
+  \parbox[t]{0.52\linewidth}{%
+    {\small\faMapMarker~#4}\\
+    {\small\faGraduationCap~#5}%
+  }%
+  \par\medskip\normalsize
+}
+
+\usepackage{tikz}
+\usepackage{eso-pic}
+
+\begin{document}
+
+% Page border
+\AddToShipoutPictureBG{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \draw[black,line width=0.8pt]
+      ([xshift=10mm,yshift=-10mm]current page.north west)
+      rectangle
+      ([xshift=-10mm,yshift=10mm]current page.south east);
+  \end{tikzpicture}%
+}
+
+\name{Babak Rahimi}
+\tagline{Electronics Engineer \,|\, M.Sc. Student in Integrated Circuits}
+\photo{3.3cm}{profile.jpg}
+\personalinfo{%
+  \email{Babakrahimi333@gmail.com}
+  \phone{+98 922 821 4946}
+  \location{Tehran, Iran}
+}
+
+% Header spans both columns.
+\begin{fullwidth}
+  \makecvheader
+\end{fullwidth}
+
+\AtBeginEnvironment{itemize}{%
+  \small
+  \setlength{\itemsep}{2pt}%
+  \setlength{\parskip}{0pt}%
+  \setlength{\topsep}{2pt}%
+  \setlength{\parsep}{0pt}%
+}
+\raggedbottom
+
+% Right-hand sidebar on page 1: education, skills and honors.
+\addsidebar{sidebar.tex}
+
+% LEFT COLUMN -- PAGE 1
+\cvsection{Research Interests} 
+\cvtag{Analog and Digital IC Design}
+\cvtag{Mixed-Signal IC Design}\\
+\cvtag{CMOS}
+\cvtag{ADC}
+\cvtag{DAC}
+\cvtag{Power Management ICs}\\
+\cvtag{RFIC}
+\cvtag{High Freq. Circuits}
+\cvtag{Photonic}
+\cvtag{MEMS}
+
+
+\cvsection{Professional Experience}
+
+\cvevent{Electronics Engineer}{Arman Tandorost Med}{Oct 2023 -- Aug 2024}{Tehran, Iran}
+\begin{itemize}
+  \item Developed integrated hardware and software solutions for \textbf{data acquisition}, sensor interfacing, and real-time monitoring.
+\end{itemize}
+\divider
+
+\cvevent{Hardware \& Firmware Engineer}{Persian Gazelle Solar Car Center}{Jun 2023 -- Dec 2023}{Tehran, Iran}
+\begin{itemize}
+\item Designed the vehicle electrical system based on the \textbf{CAN bus protocol} and redesigned its \textbf{power converter} circuits.
+\end{itemize}
+\divider
+
+\cvevent{Electronics Engineer}{Araz Industrial Group (Joula)}{Jun 2021 -- Dec 2021}{Tehran, Iran}
+\begin{itemize}
+  \item Developed microcontroller firmware for industrial monitoring and automation.
+\end{itemize}
+
+
+
+%-------------------------------------------------------------
+\cvsection{Languages}
+
+\smallskip
+\textbf{English} \hfill Intermediate\\
+\textbf{Persian} \hfill Native\\
+\textbf{Azerbaijani}\hfill Native\\
+\textbf{Arabic} \hfill Basic\\
+\textbf{Russian} \hfill Basic\\
+
+%-------------------------------------------------------------
+\cvsection{Courses \& Self Study}
+
+\smallskip
+\textbf{Digital Logic Design}\\
+{\footnotesize Dr. Navabi -- Maktabkhooneh}
+
+\smallskip
+\textbf{Keysight Advanced Design System (ADS)}\\
+{\footnotesize Maryam Zare -- Maktabkhooneh}
+
+\smallskip
+\textbf{Image Processing}\\
+{\footnotesize Dr. Mohammadi -- Maktabkhooneh}
+
+%---------------------------------------------------------------------------------------------
+% Pages after page 1: full-width single-column layout.
+\clearpage
+\newgeometry{
+  left=2cm,
+  right=2cm,
+  top=1.7cm,
+  bottom=1.7cm,
+  marginparwidth=1cm,
+  marginparsep=0.5cm
+}
+
+\cvsection{Selected Projects}
+
+\textbf{MPPT Solar Charger}\\
+\textit{B.Sc. Project \,|\, 2025--2026}
+\begin{itemize}
+  \item Designed a buck-converter charger, including topology and component selection,
+        circuit design, PCB layout, and ATmega8A PWM firmware.
+  \item Simulated the design in LTspice and tested the prototype under load and with a
+        solar panel.
+  \item Developed a Python application to monitor input/output voltage, current, power,
+        and efficiency, with FFT analysis.
+\end{itemize}
+\divider
+
+\textbf{USB Oscilloscope}\\
+\textit{Personal Project \,|\, 2026--Present}
+\begin{itemize}
+  \item Built a prototype around the STM32F103RET6 internal ADC and USB data transfer.
+  \item Achieved approximately 1 MSPS, limited by USB throughput; developed PC-side
+        signal visualization.
+\end{itemize}
+\divider
+
+\textbf{USB-Controlled Function Generator}\\
+\textit{Personal Project \,|\, 2026--Present}
+\begin{itemize}
+  \item Used an AD9833 for signal generation up to 1 MHz and the microcontroller's
+        internal DAC for lower frequencies.
+  \item Implemented USB communication for computer-based control.
+\end{itemize}
+\divider
+
+\textbf{Computer-Controlled Laboratory Power Supply}\\
+\textit{Personal Project}
+\begin{itemize}
+  \item Developed a dual-output adjustable supply (0--30 V, up to 3 A), with fixed
+        3.3 V and 5 V rails.
+  \item Adapted a buck-converter design to enable accurate computer control of the
+        adjustable outputs.
+\end{itemize}
+\divider
+
+\textbf{Capacitive-Touch Keyboard}\\
+\textit{Personal Project}
+\begin{itemize}
+  \item Designed the PCB and complete microcontroller firmware using TTP223
+        touch-sensor ICs and standard logic ICs.
+\end{itemize}
+\divider
+
+\textbf{Textile Inspection Data Logger}\\
+\textit{Industrial Project}
+\begin{itemize}
+  \item Developed an operator-triggered system that records fabric-defect locations
+        during motorized inspection and sends the data to a server.
+  \item Integrated an Arduino Due, Wi-Fi, and a USB barcode reader.
+\end{itemize}
+\divider
+
+\textbf{Temperature \& Lighting Control Equipment}\\
+\textit{Commercial Product Development}
+\begin{itemize}
+  \item Designed the hardware and microcontroller firmware for temperature control and
+        PWM-based ambient-light adjustment.
+  \item Implemented SPI, I2C, and RS-485 interfaces; the product was commercially released.
+\end{itemize}
+
+\cvsection{Selected Coursework}
+
+\noindent
+\begin{minipage}[t]{0.485\linewidth}
+\begin{itemize}
+  \item \textbf{Electronics I} \hfill 20.00/20
+  \item \textbf{Electronics II} \hfill 20.00/20
+  \item \textbf{Electronics III} \hfill 15.00/20
+  \item \textbf{Signals and Systems} \hfill 17.50/20
+\end{itemize}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.485\linewidth}
+\begin{itemize}
+  
+  \item \textbf{Digital Circuits} \hfill 20.00/20
+  \item \textbf{Microcomputers I} \hfill 19.00/20
+  \item \textbf{Microcomputers II} \hfill 18.50/20
+  \item \textbf{ARM Microcontrollers} \hfill 19.00/20
+\end{itemize}
+\end{minipage}
+
+\cvsection{Honors \& Volunteer Experience}
+\begin{itemize}
+	\item \textbf{Founder}, Electrical Engineering Student Society, Enghelab-e Eslami University
+
+\item \textbf{4th Place}, Third \href{https://shamsipour.tvu.ac.ir/fa/713554}{``Idea Show''} Competition, \href{https://shamsipour.tvu.ac.ir/fa/714120}{Shamsipour Technical College}
+
+	\item \textbf{Rank 336} -- National M.Sc. Entrance Examination
+	\item \textbf{Rank 21} -- National B.Sc. Entrance Examination
+	\item \textbf{Rank 343} -- National A.Sc. Entrance Examination
+\end{itemize}
+
+\end{document}
